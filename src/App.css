@@ -1,3 +1,28 @@
 .App {
   text-align: center;
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.holder{
+  background-color: lightgrey;
+  grid-column: 1;
+  padding-bottom: 400px;
+}
+
+.bloc-chat{
+  text-align: left;
+  margin-left: 20px;
+  font-weight: normal;
+}
+
+.room-list{
+  border-top: 1px solid white;
+  grid-column: 1;
+}
+
+.room-names{
+  text-align: left;
+  margin-left: 20px;
+  font-weight: lighter;
 }
