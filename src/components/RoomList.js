@@ -38,15 +38,19 @@ createRoom(){
   this.setState({newRoomName: ''})
 }
 
+handleRoomClick(name){
+  this.props.setActive(name)
+}
+
   render() {
     return (
       <div className="room-list">
         {
           this.state.rooms.map((name, index) =>
-            <h1 className="room-names" key={index}>{this.state.rooms[index].name}</h1>
+            <h1 className="room-names" key={index} onClick={() => this.handleRoomClick(name)}>{this.state.rooms[index].name}</h1>
           )
         }
-        <form>
+        <form className="newRoomForm">
           <input type="text" value={this.state.newRoomName} onChange={(e) => this.handleChange(e)} placeholder="New Room Name"/>
           <input type="submit" value="Create Room" onClick={(e) => this.handleSubmit(e)} />
         </form>

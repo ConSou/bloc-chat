@@ -26,3 +26,19 @@
   margin-left: 20px;
   font-weight: lighter;
 }
+
+.newRoomForm{
+  text-align: left;
+  margin-left: 20px;
+}
+
+.active-room{
+ display: grid;
+ grid-column: 2;
+ text-align: left;
+}
+
+.activated{
+  text-align: left;
+  margin-left: 20px;
+}
