@@ -42,3 +42,15 @@
   text-align: left;
   margin-left: 20px;
 }
+
+table:nth-child(even){
+  background-color: lightgrey;
+}
+
+#new-mes{
+  display: inline;
+  margin-left: 20px;
+  margin-top: 250px;
+  height: 100px;
+  width: 500px;
+}

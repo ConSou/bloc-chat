@@ -52,7 +52,8 @@ class App extends Component {
         setActive={ (name) => this.setActive(name) }/>
       </div>
       <MessageList firebase={firebase}
-      activeRoom={this.state.activeRoom} />
+      activeRoom={this.state.activeRoom}
+      currentUser={this.state.currentUser} />
       </div>
     );
   }

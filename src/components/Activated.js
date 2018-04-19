@@ -9,13 +9,13 @@ class Activated extends Component {
   return (
     <div className="activated">
       <h2> {this.props.activeRoom.name} </h2>
-      <div>{filtMes.map((val, index) =>
+      <div className="view-mes">{filtMes.map((val, index) =>
           <table key={index}>
             <tbody>
               <tr>
                 <td> {val.userName} </td>
                 <td> {val.content} </td>
-                <td> {val.sentAt} </td>
+                <td> {val.sentAt}</td>
               </tr>
             </tbody>
           </table>
