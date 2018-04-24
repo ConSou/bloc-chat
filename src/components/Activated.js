@@ -15,21 +15,6 @@ class Activated extends Component {
        }
      }
 
-     handleDoubleClick(val, index): void {
-       var rename = prompt("Edit Message");
-       const newMesArr = this.props.messages;
-       if(rename === null){return};
-
-       this.props.messagesRef.child(val.key).update({content: rename});
-       const newOb = {content: rename, roomId: val.roomId, sentAt: val.sentAt, userName: val.userName}
-
-       newMesArr.splice([index], 1, newOb)
-       console.log(newMesArr)
-
-       this.setState({messages: newMesArr})
-     }
-
-
   render() {
 
     let filtMes = this.props.messages.filter(val => val.roomId === this.props.activeRoom.key)
@@ -40,7 +25,7 @@ class Activated extends Component {
       <div className="view-mes">{filtMes.map((val, index) =>
           <table key={index}>
             <tbody>
-              <tr onDoubleClick={() => this.handleDoubleClick(val, index)}>
+              <tr onDoubleClick={() => this.props.handleDoubleClick(val, index)}>
                 <td> {val.userName} </td>
                 <td> {val.content} </td>
                 <td> {val.sentAt}</td>

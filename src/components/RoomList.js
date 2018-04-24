@@ -10,6 +10,7 @@ class RoomList extends Component {
     }
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
+    this.messagesRef = this.props.firebase.database().ref('Messages');
   }
 
   componentDidMount() {
@@ -46,6 +47,7 @@ handleRoomClick(name){
 delButton(name){
    const key = name.key;
    const roomsArr = this.state.rooms;
+   const relatedMes = [];
    this.props.setActive('');
 
    for(let i = 0; i < roomsArr.length; i++){
@@ -53,9 +55,20 @@ delButton(name){
       this.roomsRef.child(key).remove();
       roomsArr.splice(i, 1)
       this.setState({ rooms: roomsArr })
+      this.messagesRef.on('child_added', snapshot => {
+        const message = snapshot.val()
+        message.key = snapshot.key;
+        relatedMes.push(message)
+      });
+      for(let j = 0; j < relatedMes.length; j++){
+          if(name.key === relatedMes[j].roomId){
+          this.messagesRef.child(relatedMes[j].key).remove()
+        }
+      }
+      }
      }
-   }
 }
+
 
 handleDoubleClick(name, index): void{
   let rename = prompt("Enter New Chatroom Name");
@@ -86,7 +99,6 @@ handleDoubleClick(name, index): void{
           <input type="text" value={this.state.newRoomName} onChange={(e) => this.handleChange(e)} placeholder="New Room Name"/>
           <input type="submit" value="Create Room" onClick={(e) => this.handleSubmit(e)} />
         </form>
-
       </div>
     );
   }

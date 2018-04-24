@@ -54,6 +54,23 @@ sendMessage(){
   this.setState({ newMessageCont: '' });
 }
 
+handleDoubleClick(val, index): void {
+  if(this.props.currentUser + ':' !== val.userName){return};
+  var rename = prompt("Edit Message");
+  const newMesArr = this.state.messages;
+  if(rename === null){return};
+
+  this.messagesRef.child(val.key).update({content: rename});
+  const newOb = {content: rename, roomId: val.roomId, sentAt: val.sentAt, userName: val.userName, key: val.key}
+
+  for(let i = 0; i < this.state.messages.length; i++){
+    if(val.key === this.state.messages[i].key){
+      newMesArr.splice(i, 1, newOb)
+    }
+  }
+  this.setState({messages: newMesArr})
+}
+
   render() {
     return (
       <div className="message-list">
@@ -61,7 +78,9 @@ sendMessage(){
         <Activated
         messages={this.state.messages}
         messagesRef={this.messagesRef}
-        activeRoom={this.props.activeRoom}/>
+        activeRoom={this.props.activeRoom}
+        currentUser={this.props.currentUser}
+        handleDoubleClick={(val, index) => this.handleDoubleClick(val, index)}/>
         <div className="NewMessage">
           <form id="new-mes">
             <textarea id="new-mes" placeholder="Write your message here..." value={this.state.newMessageCont}onChange={(e) => this.handleChange(e)}></textarea>
