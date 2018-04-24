@@ -60,6 +60,7 @@ sendMessage(){
       <h1> {this.props.activeRoom === '' ? "Select or create room to begin chat!" : ""} </h1>
         <Activated
         messages={this.state.messages}
+        messagesRef={this.messagesRef}
         activeRoom={this.props.activeRoom}/>
         <div className="NewMessage">
           <form id="new-mes">

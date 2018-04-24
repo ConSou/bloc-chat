@@ -22,8 +22,10 @@
 }
 
 .room-names{
+  display: inline-block;
   text-align: left;
-  margin-left: 20px;
+  margin-left: -10px;
+  margin-right: 10px;
   font-weight: lighter;
 }
 
@@ -53,4 +55,8 @@ table:nth-child(even){
   margin-top: 250px;
   height: 100px;
   width: 500px;
+}
+
+.delete-room-but{
+  display: inline;
 }
